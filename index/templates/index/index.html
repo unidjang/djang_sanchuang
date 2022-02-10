@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+{% if request.session.username %}
+    <p>欢迎{{ request.session.username }}</p>
+    <p><a href="/user/logout">退出登录</a></p>
+    <p><a href="/note/list">进入我的笔记</a></p>
+
+{% else %}
+    {% if request.COOKIES.username %}
+        <p>欢迎{{ request.session.username }}</p>
+        <p><a href="/user/logout">退出登录</a></p>
+        <p><a href="/note/list">进入我的笔记</a></p>
+    {% else %}     {# 都没有的话，就让用户登录或者注册 #}
+        <p><a href="/user/login">登录</a></p>
+        <p><a href="/user/reg">注册</a></p>
+    {% endif %}
+{% endif %}
+</body>
+</html>
